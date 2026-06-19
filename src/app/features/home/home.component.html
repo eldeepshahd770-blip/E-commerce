@@ -1,0 +1,120 @@
+<main class="w-full mt-20 bg-(--card-bg) min-h-screen pb-12">
+  <app-slider></app-slider>
+  <section class="container mx-auto max-w-7xl px-4 py-10 bg-(--bg-2sectionhome)">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div
+        class="bg-(--card-bg) rounded-xl shadow-sm border border-(--light-gray) p-6 flex items-center gap-4 hover:shadow-md transition-shadow"
+      >
+        <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-truck text-blue-500 text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-(--color-secondary) text-sm">Free Shipping</h3>
+          <p class="text-xs text-gray-500 mt-1">On orders over 500 EGP</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-(--card-bg) rounded-xl shadow-sm border border-(--light-gray) p-6 flex items-center gap-4 hover:shadow-md transition-shadow"
+      >
+        <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-shield-halved text-green-500 text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-(--color-secondary) text-sm">Secure Payment</h3>
+          <p class="text-xs text-gray-500 mt-1">100% secure transactions</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-(--card-bg) rounded-xl shadow-sm border border-(--light-gray) p-6 flex items-center gap-4 hover:shadow-md transition-shadow"
+      >
+        <div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-rotate-left text-orange-500 text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-(--color-secondary) text-sm">Easy Returns</h3>
+          <p class="text-xs text-gray-500 mt-1">14-day return policy</p>
+        </div>
+      </div>
+
+      <div
+        class="bg-(--card-bg) rounded-xl shadow-sm border border-(--light-gray) p-6 flex items-center gap-4 hover:shadow-md transition-shadow"
+      >
+        <div class="w-12 h-12 rounded-full bg-purple-50 flex items-center justify-center shrink-0">
+          <i class="fa-solid fa-headset text-purple-500 text-xl"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-(--color-secondary) text-sm">24/7 Support</h3>
+          <p class="text-xs text-gray-500 mt-1">Dedicated support team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-categries-home></app-categries-home>
+  <section class="container mx-auto px-6 py-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Card 1 -->
+      <div
+        class="relative rounded-2xl p-8 text-(--card-bg) overflow-hidden bg-linear-to-r from-[#00BA7B] to-[#007C56]"
+      >
+        <!-- badge -->
+        <span class="inline-block bg-(--card-bg)/20 px-4 py-1 rounded-full text-sm mb-4">
+          🔥 Deal of the Day
+        </span>
+
+        <h2 class="text-[1.875rem] font-bold mb-2">Fresh Organic Fruits</h2>
+
+        <p class="text-(--card-bg)/80 mb-4">Get up to 40% off on selected organic fruits</p>
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-[1.875rem] font-extrabold">40% OFF</span>
+          <span class="text-(--card-bg) font-medium">Use code: <b>ORGANIC40</b></span>
+        </div>
+
+        <button
+          routerLink="/shop"
+          class="bg-(--card-bg) text-green-700 px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition"
+        >
+          Shop Now <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <!-- decoration -->
+        <div class="absolute -bottom-15 -left-18 w-40 h-40 bg-(--card-bg)/10 rounded-full"></div>
+        <div class="absolute -top-13 -right-9 w-32 h-32 bg-(--card-bg)/10 rounded-full"></div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="relative rounded-2xl p-8 text-(--card-bg) overflow-hidden bg-linear-to-r from-[#FF8513] to-[#FF3253]"
+      >
+        <!-- badge -->
+        <span class="inline-block bg-(--card-bg)/20 px-4 py-1 rounded-full text-sm mb-4">
+          ✨ New Arrivals
+        </span>
+
+        <h2 class="text-[1.875rem] font-bold mb-2">Exotic Vegetables</h2>
+
+        <p class="text-(--card-bg)/80 mb-4">Discover our latest collection of premium vegetables</p>
+
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-[1.875rem] font-extrabold">25% OFF</span>
+          <span class="text-(--card-bg) font-medium">Use code: <b>FRESH25</b></span>
+        </div>
+
+        <button
+          routerLink="/shop"
+          class="bg-(--card-bg) text-orange-500 px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition"
+        >
+          Explore Now <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <!-- decoration -->
+        <div class="absolute -bottom-15 -left-18 w-40 h-40 bg-(--card-bg)/10 rounded-full"></div>
+        <div class="absolute -top-13 -right-9 w-32 h-32 bg-(--card-bg)/10 rounded-full"></div>
+      </div>
+    </div>
+  </section>
+  <app-product-home></app-product-home>
+  <app-footerhome></app-footerhome>
+</main>

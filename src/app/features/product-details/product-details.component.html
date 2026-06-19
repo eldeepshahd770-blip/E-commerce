@@ -1,0 +1,230 @@
+<section class="container mt-20 mx-auto px-6 py-10">
+  <div class="text-sm text-gray-500 mb-6 flex gap-2">
+    <span routerLink="/">Home</span>
+    <span>›</span>
+    <span>{{ productdetials()!.category!.name }}</span>
+    <span>›</span>
+    <span>{{ productdetials()!.subcategory[0]!.name }}</span>
+    <span>›</span>
+    <span class="text-black font-medium">{{ productdetials()!.title }}</span>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <!-- Images -->
+    <div>
+      <div class="rounded-xl overflow-hidden">
+        <img
+          [src]="productdetials()!.imageCover"
+          [alt]="productdetials()!.slug"
+          class="w-full object-cover"
+        />
+      </div>
+      @if (productdetials()?.images?.length) {
+        <div class="flex gap-3 mt-4">
+          @for (item of productdetials()!.images; track $index) {
+            <img
+              [src]="item"
+              class="w-20 h-20 border-gray-300 border-2 rounded-lg cursor-pointer"
+            />
+          }
+        </div>
+      }
+    </div>
+
+    <div>
+      <div class="flex gap-2 mb-3">
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">{{
+          productdetials().category.name
+        }}</span>
+        <span class="bg-(--light-gray) text-gray-600 px-3 py-1 rounded-full text-sm">{{
+          productdetials().brand.name
+        }}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl font-bold mb-3">{{ productdetials().title }}</h1>
+
+      <div class="flex items-center gap-2 mb-4">
+        <app-rate [rating]="productdetials().ratingsAverage"></app-rate>
+      </div>
+
+      <div class="flex items-center gap-4 mb-4">
+        <span class="text-3xl font-bold">{{ productdetials().price }} EGP</span>
+      </div>
+
+      <div class="flex items-center gap-2 mb-6">
+        <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+        <span class="text-(--color-primary) font-medium">In Stock</span>
+      </div>
+
+      <p class="text-gray-600 leading-relaxed mb-6">
+        {{ productdetials().description }}
+      </p>
+
+      <div>
+        <p class="mb-2 font-medium">Quantity</p>
+
+        <div class="flex items-center gap-4">
+          <span class="text-gray-500">{{ productdetials().quantity }} available</span>
+        </div>
+      </div>
+      <div class="space-y-6 mt-5">
+        <div class="bg-(--light-gray) rounded-xl px-6 py-4 flex justify-between items-center">
+          <span class="text-gray-600 text-lg">Total Price:</span>
+          <span class="text-(--color-primary) text-2xl font-bold"
+            >{{ productdetials().price }} EGP</span
+          >
+        </div>
+
+        <div class="w-full flex">
+          <button
+            (click)="addToCarts(productdetials()._id)"
+            class="bg-(--color-primary) flex-1 cursor-pointer hover:bg-green-700 text-(--card-bg) py-4 rounded-xl flex items-center justify-center gap-2 text-lg font-medium shadow-md"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+            Add to Cart
+          </button>
+        </div>
+
+        <div class="flex gap-4">
+          <button
+            (click)="addToWishList(productdetials()._id)"
+            class="flex-1 border rounded-xl cursor-pointer py-4 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50"
+          >
+            <i class="fa-regular fa-heart"></i>
+            Add to Wishlist
+          </button>
+        </div>
+
+        <!-- Features -->
+        <div class="grid md:grid-cols-3 mt-5 gap-6 pt-4 border-t">
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-green-100 text-(--color-primary) w-12 h-12 flex items-center justify-center rounded-full"
+            >
+              <i class="fa-solid fa-truck"></i>
+            </div>
+            <div>
+              <p class="font-medium">Free Delivery</p>
+              <p class="text-sm text-gray-500">Orders over $50</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-green-100 text-(--color-primary) w-12 h-12 flex items-center justify-center rounded-full"
+            >
+              <i class="fa-solid fa-rotate-left"></i>
+            </div>
+            <div>
+              <p class="font-medium">30 Days Return</p>
+              <p class="text-sm text-gray-500">Money back</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-green-100 text-(--color-primary) w-12 h-12 flex items-center justify-center rounded-full"
+            >
+              <i class="fa-solid fa-shield"></i>
+            </div>
+            <div>
+              <p class="font-medium">Secure Payment</p>
+              <p class="text-sm text-gray-500">100% Protected</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border mt-5 rounded-2xl w-full overflow-hidden">
+    <div class="flex border-b bg-gray-50">
+      <button
+        class="flex items-center gap-2 px-6 py-4 text-(--color-primary) border-b-2 border-(--color-primary) font-medium"
+      >
+        <i class="fa-solid fa-box"></i>
+        Product Details
+      </button>
+
+      <button class="flex items-center gap-2 px-6 py-4 text-gray-600 hover:text-black">
+        <i class="fa-solid fa-star"></i>
+        Reviews ({{ productdetials().ratingsQuantity }})
+      </button>
+
+      <button class="flex items-center gap-2 px-6 py-4 text-gray-600 hover:text-black">
+        <i class="fa-solid fa-truck"></i>
+        Shipping & Returns
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 space-y-6">
+      <!-- Title -->
+      <h2 class="text-xl font-bold">About this Product</h2>
+
+      <!-- Description -->
+      <p class="text-gray-600 leading-relaxed">
+        {{ productdetials().description }}
+      </p>
+
+      <!-- Info Cards -->
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Product Info -->
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-semibold mb-4">Product Information</h3>
+
+          <div class="space-y-3 text-gray-600">
+            <div class="flex justify-between">
+              <span>Category</span>
+              <span class="text-black font-medium">{{ productdetials()!.category!.name }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Subcategory</span>
+              <span class="text-black font-medium">{{
+                productdetials()!.subcategory[0]!.name
+              }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Brand</span>
+              <span class="text-black font-medium">{{ productdetials()!.brand!.name }}</span>
+            </div>
+
+            <div class="flex justify-between">
+              <span>Items Sold</span>
+              <span class="text-black font-medium">{{ productdetials().sold }} sold</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="bg-gray-50 rounded-xl p-5">
+          <h3 class="font-semibold mb-4">Key Features</h3>
+
+          <ul class="space-y-3 text-gray-600">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-(--color-primary)"></i>
+              Premium Quality Product
+            </li>
+
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-(--color-primary)"></i>
+              100% Authentic Guarantee
+            </li>
+
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-(--color-primary)"></i>
+              Fast & Secure Packaging
+            </li>
+
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-check text-(--color-primary)"></i>
+              Quality Tested
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<div class="flex items-center gap-2">
+  <div class="text-yellow-400 flex gap-1">
+    @for (star of stars(); track $index) {
+      @if (star === 'full') {
+        <i class="fa-solid fa-star"></i>
+      } @else if (star === 'half') {
+        <i class="fa-solid fa-star-half-stroke"></i>
+      } @else {
+        <i class="fa-regular fa-star"></i>
+      }
+    }
+  </div>
+
+  <span class="text-gray-500 text-sm">
+    {{ rating() }}
+  </span>
+</div>

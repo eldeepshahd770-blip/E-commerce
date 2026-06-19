@@ -1,0 +1,118 @@
+<section class="mt-30">
+  <div class="flex items-center justify-between mb-8">
+    <!-- LEFT -->
+    <div class="flex items-center gap-4">
+      <!-- Icon -->
+      <div
+        class="w-14 h-14 rounded-xl bg-(--color-primary) flex items-center justify-center shadow-md"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-6 h-6 text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 7h18M5 7l1 13h12l1-13M9 7V4h6v3"
+          />
+        </svg>
+      </div>
+
+      <!-- Text -->
+      <div>
+        <!-- Breadcrumb -->
+        <p class="text-sm text-gray-400 mb-1">
+          Home <span class="mx-1">/</span>
+          <span class="text-(--color-secondary) font-medium">My Orders</span>
+        </p>
+
+        <!-- Title -->
+        <h1 class="text-2xl font-bold text-(--color-secondary)">My Orders</h1>
+
+        <!-- Subtitle -->
+        <p class="text-sm text-(--color-text)">
+          Track and manage your {{ orders()!.length }} orders
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div>
+      <button
+        routerLink="/shop"
+        class="flex items-center gap-2 text-(--color-primary) font-medium hover:underline"
+      >
+        <!-- Icon -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 3h18v18H3V3zm6 6h6m-6 4h6"
+          />
+        </svg>
+
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+  @for (item of orders(); track $index) {
+    <div
+      class="bg-(--card-bg) rounded-2xl p-5 flex items-center justify-between shadow-sm border border-(--gray-color)"
+    >
+      <!-- LEFT -->
+      <div class="flex items-center gap-4">
+        <!-- Image -->
+        <div
+          class="relative w-20 h-20 bg-(--light-gray) rounded-xl flex items-center justify-center"
+        >
+          <img [src]="item.cartItems[0].product.imageCover" class="w-14 h-14 object-contain" />
+
+          <!-- Badge -->
+          <span class="absolute -top-2 -right-2 bg-black text-white text-xs px-2 py-1 rounded-full">
+            + {{ item.cartItems.length - 1 }}
+          </span>
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-1">
+          <!-- Status -->
+          <span class="bg-orange-100 text-orange-500 text-xs px-3 py-1 rounded-full font-medium">
+            @if (item.isDelivered) {
+              On the way
+            } @else {
+              Processing
+            }
+          </span>
+
+          <!-- Order ID -->
+          <h3 class="font-semibold text-(--color-secondary) text-lg">#{{ item.id }}</h3>
+
+          <!-- Details -->
+          <div class="text-sm text-(--color-text) flex items-center gap-3">
+            <span>{{ item.createdAt | date: 'MMM d, yyyy' }}</span>
+            <span>•</span>
+            <span>{{ item.cartItems.length }} items</span>
+            <span>•</span>
+            <span>{{ item.shippingAddress.city }}</span>
+          </div>
+
+          <!-- Price -->
+          <p class="font-bold text-xl text-(--color-secondary)">
+            {{ item.totalOrderPrice }} <span class="text-sm font-medium text-gray-400">EGP</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  }
+</section>

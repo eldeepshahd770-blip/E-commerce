@@ -1,0 +1,188 @@
+<div class="min-h-screen mt-28 flex items-center justify-center bg-(--light-gray) p-4 pb-8">
+  <div class="w-full rounded-2xl overflow-hidden grid md:grid-cols-2">
+    <!-- Left Section -->
+    <div class="p-3 flex flex-col justify-center items-center text-center">
+      <img
+        src="/images/2e5810ff3e-e750761ebcd4ae5907db.png"
+        alt="cart"
+        class="w-full rounded-2xl mb-6"
+      />
+
+      <h2 class="text-xl font-bold text-gray-800 mb-2">
+        FreshCart - Your One-Stop Shop for Fresh Products
+      </h2>
+
+      <p class="text-gray-500 text-sm mb-4">
+        Join thousands of happy customers who trust FreshCart for their daily grocery needs
+      </p>
+
+      <div class="flex gap-4 text-sm text-gray-600">
+        <span><i class="fa-solid text-(--color-primary) fa-truck-moving"></i> Free Delivery</span>
+        <span><i class="fa-solid text-(--color-primary) fa-shield-halved"></i> Secure Payment</span>
+        <span><i class="fa-solid text-(--color-primary) fa-clock"></i> 24/7 Support</span>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="p-8 text-center bg-(--card-bg) rounded-2xl">
+      <h2 class="text-2xl font-bold text-(--color-primary) text-center mb-1">FreshCart</h2>
+      <p class="text-center text-gray-500 text-sm mb-6">
+        Welcome Back! <br />
+        Sign in to continue your fresh shopping experience
+      </p>
+
+      <!-- Social Buttons -->
+
+      <div class="w-full max-w-xl mx-auto bg-(--card-bg) p-8">
+        <!-- Divider -->
+        <div class="flex items-center gap-4 mb-6">
+          <div class="flex-1 h-px bg-gray-300"></div>
+          <p class="text-gray-500 text-sm font-medium uppercase">Or Continue With Email</p>
+          <div class="flex-1 h-px bg-gray-300"></div>
+        </div>
+
+        <!-- Form -->
+        <form (ngSubmit)="submitForm()" [formGroup]="loginForm" class="space-y-5">
+          <!-- Email -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="email" class="text-[15px] font-semibold text-gray-700">
+                Email Address
+              </label>
+            </div>
+
+            <div
+              class="flex items-center h-12 gap-3 px-4 rounded-2xl border-2 border-(--gray-color) bg-gray-50 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+            >
+              <i class="fa-solid fa-envelope text-gray-400 text-lg"></i>
+
+              <input
+                type="email"
+                id="email"
+                formControlName="email"
+                placeholder="Plz Enter Your Mail :)"
+                class="w-full bg-transparent text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+              />
+            </div>
+            @let emailcontroler = loginForm.get('email');
+            @if (emailcontroler?.invalid && emailcontroler?.touched) {
+              <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+                <span class="sr-only">Danger</span>
+                <div>
+                  <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                    @if (emailcontroler?.hasError('required')) {
+                      <li>Full email is required.</li>
+                    } @else if (emailcontroler?.hasError('email')) {
+                      <li>Plz enter Mail like this example@gmail.com</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Password -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="password" class="text-[15px] font-semibold text-gray-700">
+                Password
+              </label>
+
+              <a
+                routerLink="/fotget"
+                class="text-(--color-primary) text-sm font-medium cursor-pointer hover:underline"
+              >
+                Forgot Password?
+              </a>
+            </div>
+
+            <div
+              class="flex items-center h-12 rounded-2xl border-2 bg-gray-50 focus-within:bg-[#E8F0FE] border-(--gray-color) gap-3 px-4 focus-within:ring-2 focus-within:ring-green-500"
+            >
+              <i class="fa-solid fa-lock text-gray-400 text-lg"></i>
+
+              <input
+                #pass
+                id="password"
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+                class="w-full bg-transparent px-4 text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+              />
+
+              <i
+                (click)="showPass(pass)"
+                class="fa-regular fa-eye text-gray-400 text-xl cursor-pointer"
+              ></i>
+            </div>
+            @let passwordcontroler = loginForm.get('password');
+            @if (passwordcontroler?.invalid && passwordcontroler?.touched) {
+              <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+                <span class="sr-only">Danger</span>
+                <div>
+                  <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                    @if (passwordcontroler?.hasError('required')) {
+                      <li>Full password is required.</li>
+                    } @else if (passwordcontroler?.hasError('pattern')) {
+                      <li>
+                        Must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1
+                        special
+                      </li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Remember -->
+          <div class="flex items-center gap-3">
+            <input type="checkbox" class="w-5 h-5 rounded border-gray-300" />
+
+            <label class="text-gray-700 text-lg"> Keep me signed in </label>
+          </div>
+
+          <!-- Button -->
+          <button
+            [disabled]="loginForm.invalid"
+            type="submit"
+            class="w-full h-12 rounded-2xl bg-(--color-primary) hover:bg-green-700 transition text-(--card-bg) text-2xl font-bold shadow-md"
+          >
+            Sign In
+          </button>
+        </form>
+
+        <!-- Bottom -->
+        <div class="mt-10 border-t pt-8">
+          <p class="text-center text-gray-600 text-2xl">
+            New to FreshCart?
+            <span
+              routerLink="/register"
+              class="text-(--color-primary) font-semibold cursor-pointer hover:underline"
+            >
+              Create an account
+            </span>
+          </p>
+
+          <!-- Features -->
+          <div class="flex items-center justify-center gap-10 mt-8 text-gray-500">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-lock text-sm"></i>
+              <span class="text-lg">SSL Secured</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-users text-sm"></i>
+              <span class="text-lg">50K+ Users</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-star text-sm"></i>
+              <span class="text-lg">4.9 Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

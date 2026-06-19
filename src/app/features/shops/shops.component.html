@@ -1,0 +1,89 @@
+<section>
+  <section class="bg-linear-to-r mt-24 from-green-500 to-emerald-500 text-(--card-bg) py-10 px-10">
+    <div class="container mx-auto mb-6 text-(--card-bg)/80 text-sm">
+      <span routerLink="/" class="hover:underline cursor-pointer">Home</span>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-(--card-bg)">All Products</span>
+    </div>
+
+    <div class="container mx-auto flex items-center gap-5">
+      <div class="size-16 bg-(--card-bg)/20 rounded-2xl flex items-center justify-center">
+        <i class="fa-solid text-[1.875rem] fa-box-open"></i>
+      </div>
+
+      <div>
+        <h1 class="text-4xl font-bold mb-2">All Products</h1>
+        <p class="text-(--card-bg)/80 text-lg">Explore our complete product collection</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-6 py-6">
+    <p class="text-gray-500 text-lg">Showing {{ productList().length }} products</p>
+  </div>
+
+  <div class="container mx-auto px-6 pb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      @for (product of productList(); track product._id) {
+        <div
+          class="group bg-(--card-bg) rounded-xl border border-(--light-gray) p-4 relative hover:border-[#20c997] hover:shadow-lg transition-all duration-300"
+        >
+          <div
+            class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+          >
+            <button
+              (click)="addToWishList(product._id)"
+              class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+            >
+              <i class="fa-regular fa-heart text-xs"></i>
+            </button>
+            <button
+              class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+            >
+              <i class="fa-solid fa-arrows-rotate text-xs"></i>
+            </button>
+            <button
+              [routerLink]="['/detials', product._id, product.slug]"
+              class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+            >
+              <i class="fa-regular fa-eye text-xs"></i>
+            </button>
+          </div>
+
+          <div class="aspect-square mb-4 overflow-hidden rounded-lg">
+            <img
+              [src]="product.imageCover"
+              [alt]="product.title"
+              class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <span class="text-2xs text-(--color-secondary) font-medium uppercase tracking-wider">{{
+              product.category.name
+            }}</span>
+            <h3 class="text-sm font-bold text-(--color-text) truncate">{{ product.slug }}</h3>
+
+            <div class="flex items-center gap-1">
+              <app-rate [rating]="product.ratingsAverage"></app-rate>
+
+              <span class="text-2xs text-gray-400"> ({{ product.ratingsQuantity }})</span>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-sm font-bold text-(--color-secondary)"
+                >{{ product.price }} EGP</span
+              >
+              <button
+                (click)="addToCarts(product._id)"
+                class="w-8 cursor-pointer h-8 bg-[#20c997] text-(--card-bg) rounded-full flex items-center justify-center hover:bg-[#19a179] transition-colors shadow-sm"
+              >
+                <i class="fa-solid fa-plus text-xs"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

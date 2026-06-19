@@ -1,0 +1,386 @@
+<header class="fixed top-0 w-full z-1000">
+  <div class="bg-(--bg-main) border-b border-(--gray-color) py-2 hidden lg:block">
+    <div class="container mx-auto px-4 flex justify-between items-center text-sm text-gray-500">
+      <div class="flex items-center space-x-6">
+        <span class="flex items-center text-(--color-secondary) gap-2">
+          <i class="fa-solid fa-truck text-(--color-primary)"></i>
+          Free Shipping on Orders 500 EGP
+        </span>
+        <span class="flex items-center gap-2 text-(--color-secondary)">
+          <i class="fa-solid fa-gifts text-(--color-primary)"></i>
+          New Arrivals Daily
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-4 gap-4">
+        <a
+          href="https://wa.me/18001234567"
+          target="_blank"
+          class="flex items-center text-(--color-text) gap-2 cursor-pointer"
+        >
+          <i class="fa-solid fa-phone text-(--color-text)"></i>
+          +1 (800) 123-4567
+        </a>
+        <a
+          href="mailto:support@freshcart.com"
+          class="flex items-center gap-2 text-(--color-text) cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+          support@freshcart.com
+        </a>
+        <span class="border-l border-gray-300 h-4 mx-2"></span>
+        @if (logged()) {
+          <span
+            routerLink="/profile"
+            class="flex items-center gap-2 text-(--color-text) cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              /></svg
+            >{{ name }}
+          </span>
+          <button
+            (click)="logOut()"
+            class="flex items-center gap-2 text-(--color-text) hover:text-var(--color-primary) transition-colors cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            Sign Out
+          </button>
+        } @else {
+          <span routerLink="/" class="flex items-center gap-2 text-(--color-text) cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              /></svg
+            >User Name
+          </span>
+          <button
+            routerLink="/register"
+            class="flex items-center text-(--color-text) gap-2 hover:text-var(--color-primary) transition-colors cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            Sign up
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+
+  <nav
+    class="sticky top-0 z-40 w-full border-b border-(--light-gray) bg-(--card-bg) px-6 py-4 font-sans"
+  >
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4">
+      <!-- logo  -->
+      <a class="shrink-0">
+        <img
+          src="https://freshcart.codescandy.com/assets/images/logo/freshcart-logo.svg"
+          alt="FreshCart"
+          class="h-7 md:h-8"
+        />
+      </a>
+
+      <div class="hidden lg:block grow max-w-md">
+        <form class="flex relative w-full">
+          <input
+            type="text"
+            class="w-full relative border border-gray-300 rounded-full px-5 py-2.5 text-sm focus:ring-green-500 focus:border-green-500"
+            placeholder="Search for products, brands and more..."
+          />
+          <button
+            type="submit"
+            class="bg-(--color-primary) absolute top-[10%] right-[2%] hover:bg-green-700 text-(--card-bg) w-8 h-8 rounded-full flex items-center justify-center transition-colors shrink-0"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="hidden items-center gap-6 md:flex">
+        <a
+          routerLink="/"
+          class="font-medium text-(--color-text) transition-colors cursor-pointer hover:text-emerald-600"
+          >Home</a
+        >
+        <a
+          routerLink="/shop"
+          class="font-medium text-(--color-text) transition-colors cursor-pointer hover:text-emerald-600"
+          >Shop</a
+        >
+        <div class="group relative">
+          <button
+            routerLink="/categories"
+            class="flex items-center gap-1 py-2 font-medium cursor-pointer text-(--color-text) transition-colors group-hover:text-emerald-600"
+          >
+            Categories
+            <i class="fas fa-chevron-down text-2xs transition-transform group-hover:rotate-180"></i>
+          </button>
+          <div
+            class="invisible absolute left-0 z-50 mt-0 w-48 rounded-lg border border-(--light-gray) bg-(--card-bg) opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100"
+          >
+            <ul class="py-2 text-sm text-(--color-text)">
+              <li>
+                <a
+                  routerLink="/categories"
+                  class="block px-4 py-2 hover:bg-emerald-50 hover:text-emerald-600"
+                  >All Categories</a
+                >
+              </li>
+              <li>
+                <a
+                  routerLink="/"
+                  class="block px-4 py-2 hover:bg-emerald-50 hover:text-emerald-600"
+                ></a>
+              </li>
+              @for (cat of cats(); track cat._id) {
+                <li>
+                  <a
+                    [routerLink]="['/detailsCats', cat._id, cat.slug]"
+                    class="block px-4 py-2 hover:bg-emerald-50 hover:text-emerald-600"
+                  >
+                    {{ cat.name }}
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+        <a
+          routerLink="/brands"
+          routerLinkActive="text-(--color-primary)"
+          class="font-medium text-(--color-text) transition-colors hover:text-[(--color-primary)] cursor-pointer"
+          >Brands</a
+        >
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="hidden xl:flex items-center gap-3 cursor-pointer">
+          <div
+            class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-(--color-primary)"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+              />
+            </svg>
+          </div>
+          <div class="flex flex-wrap items-center">
+            <p class="text-[.875rem] mb-3 font-medium text-(--color-text) w-full leading-none">
+              Support
+            </p>
+            <p class="text-xs font-semibold text-(--color-secondary) w-full leading-none mt-2">
+              24/7 Help
+            </p>
+          </div>
+        </div>
+        <div class="border-l border-gray-300 h-8 hidden xl:block"></div>
+        <!-- ? --------------- ICONS  & signin ? ---------------  -->
+        <div class="flex items-center gap-2 md:gap-4">
+          <button
+            class="flex h-10 w-10 items-center justify-center rounded-full text-(--color-secondary) transition-all hover:bg-[(--light-gray)] lg:hidden"
+          >
+            <i class="fas fa-search text-lg"></i>
+          </button>
+          <button
+            routerLink="/wishlist"
+            class="relative flex h-10 w-10 items-center justify-center rounded-full text-(--color-secondary) transition-all hover:bg-[(--light-gray)] hover:text-emerald-600"
+          >
+            <i class="far fa-heart text-xl"></i>
+            <span
+              class="absolute right-1 top-1 rounded-full border-2 border-(--card-bg) bg-(--color-primary) px-1.5 text-2xs font-bold text-(--card-bg)"
+              >{{ countWish() }}</span
+            >
+          </button>
+          <button
+            routerLink="/cart"
+            class="relative flex h-10 w-10 items-center justify-center rounded-full text-(--color-text) transition-all hover:bg-(--light-gray) hover:text-emerald-600"
+          >
+            <i class="fas fa-shopping-cart text-xl"></i>
+            <span
+              class="absolute right-1 top-1 rounded-full border-2 border-(--card-bg) bg-(--color-primary) px-1.5 text-2xs font-bold text-(--card-bg)"
+              >{{ count() }}</span
+            >
+          </button>
+          @if (!logged()) {
+            <div
+              class="hidden sm:flex items-center gap-4 py-3 px-2 cursor-pointer rounded-full md:border-l bg-(--color-primary) md:border-(--gray-color) md:pl-4 hover:bg-green-300"
+            >
+              <a
+                routerLink="/login"
+                class="flex items-center gap-2 font-medium hover:text-emerald-600 text-(--card-bg) transition-colors"
+              >
+                <i class="far fa-user text-lg"></i> Sign In
+              </a>
+            </div>
+          }
+
+          <button
+            (click)="toggleDarkMode()"
+            class="relative w-14 h-8 flex items-center bg-gray-300 dark:bg-gray-700 rounded-full p-1 transition-all duration-300"
+          >
+            <div
+              class="w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center transform transition-all duration-300"
+              [class.translate-x-6]="isDark"
+            >
+              @if (isDark) {
+                <i class="fa-solid fa-moon text-gray-600 text-xs"></i>
+              } @else {
+                <i class="fa-solid fa-sun text-yellow-400 text-xs"></i>
+              }
+            </div>
+          </button>
+          <!-- bars button  -->
+          <button
+            type="button"
+            data-drawer-target="drawer-right"
+            data-drawer-show="drawer-right"
+            data-drawer-placement="right"
+            class="p-2 text-gray-600 hover:text-emerald-600 md:hidden focus:outline-none transition-colors"
+          >
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --------------- navbar responsive ---------------- -->
+
+  <div
+    id="drawer-right"
+    class="fixed top-0 right-0 z-50 h-screen w-80 translate-x-full overflow-y-auto bg-(--card-bg) p-6 shadow-2xl transition-transform"
+    tabindex="-1"
+  >
+    <!-- logo  -->
+    <div class="mb-8 flex items-center justify-between">
+      <img
+        src="https://freshcart.codescandy.com/assets/images/logo/freshcart-logo.svg"
+        alt="Logo"
+        class="h-7"
+      />
+      <button
+        type="button"
+        data-drawer-hide="drawer-right"
+        class="rounded-full bg-(--light-gray) p-2 text-gray-400 hover:bg-(--gray-color)"
+      >
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <!-- search  -->
+    <div class="relative mb-8">
+      <input
+        type="text"
+        placeholder="Search products..."
+        class="w-full rounded-lg border border-(--gray-color) bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-emerald-500 focus:ring-emerald-500"
+      />
+      <button class="absolute right-3 top-2.5 text-emerald-600">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+
+    <!-- links  -->
+    <nav class="mb-1 border-b border-(--light-gray) pb-2">
+      <ul class="space-y-5 font-medium text-gray-800">
+        <li><a routerLink="/" class="block transition-colors hover:text-emerald-600">Home</a></li>
+        <li>
+          <a routerLink="/shop" class="block transition-colors hover:text-emerald-600">Shop</a>
+        </li>
+        <li>
+          <a routerLink="/categories" class="block transition-colors hover:text-emerald-600"
+            >Categories</a
+          >
+        </li>
+        <li>
+          <a routerLink="/brands" class="block transition-colors hover:text-emerald-600">Brands</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="mb-2 space-y-2">
+      <a
+        routerLink="/wishlist"
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-gray-50"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-full bg-red-50 text-(--color-danger)"
+        >
+          <i class="far fa-heart text-lg"></i>
+        </div>
+        <span class="font-medium text-gray-700 group-hover:text-(--color-danger)">Wishlist</span>
+      </a>
+      <a
+        routerLink="/cart"
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-gray-50"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-50 text-emerald-600"
+        >
+          <i class="fas fa-shopping-cart text-lg"></i>
+        </div>
+        <span class="font-medium text-gray-700 group-hover:text-emerald-600">My Cart</span>
+      </a>
+    </div>
+
+    <div class="space-y-2 border-t border-(--light-gray) pt-2">
+      <a
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-emerald-50"
+      >
+        <div
+          routerLink="/login"
+          class="flex h-11 w-11 items-center justify-center rounded-full bg-(--light-gray) text-gray-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+        >
+          <i class="far fa-user text-lg"></i>
+        </div>
+        <span class="font-bold text-gray-700 group-hover:text-emerald-600">Sign In</span>
+      </a>
+
+      <a
+        class="group flex cursor-pointer items-center gap-1 rounded-xl p-1 transition-colors hover:bg-emerald-50"
+      >
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-full bg-(--light-gray) text-gray-600 transition-colors group-hover:bg-emerald-100 group-hover:text-emerald-600"
+        >
+          <i class="fas fa-user-plus text-lg"></i>
+        </div>
+        <span class="font-bold text-gray-700 group-hover:text-emerald-600">Sign Up</span>
+      </a>
+    </div>
+  </div>
+</header>

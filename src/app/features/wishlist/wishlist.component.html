@@ -1,0 +1,121 @@
+<main class="container mx-auto mt-24 px-4 py-12 max-w-6xl">
+  <nav class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+    <a routerLink="/" class="hover:text-[#198754] transition-colors">Home</a>
+    <span>/</span>
+    <span class="text-(--color-secondary) font-medium">Wishlist</span>
+  </nav>
+
+  <div class="flex items-center gap-4 mb-8">
+    <div
+      class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-(--color-danger) shrink-0"
+    >
+      <i class="fa-solid fa-heart text-xl"></i>
+    </div>
+    <div>
+      <h1 class="text-2xl font-bold text-(--color-secondary) leading-tight">My Wishlist</h1>
+      <p class="text-gray-500 text-sm mt-1">{{ wishlistDetails()!.length }} items saved</p>
+    </div>
+  </div>
+
+  <div
+    class="bg-(--card-bg) rounded-xl border border-(--light-gray) shadow-sm overflow-hidden mb-8"
+  >
+    <div
+      class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-(--light-gray) text-sm font-medium text-gray-500"
+    >
+      <div class="col-span-6">Product</div>
+      <div class="col-span-2">Price</div>
+      <div class="col-span-2">Status</div>
+      <div class="col-span-2 text-right">Actions</div>
+    </div>
+
+    <div class="divide-y divide-(--light-gray)">
+      @for (item of wishlistDetails(); track $index) {
+        <div
+          class="grid grid-cols-1 md:grid-cols-12 gap-4 px-6 py-5 items-center hover:bg-(--color-text)/20 transition-colors"
+        >
+          <div class="col-span-1 md:col-span-6 flex items-center gap-4">
+            <div
+              class="w-20 h-20 shrink-0 bg-(--card-bg) rounded-lg border border-(--light-gray) flex items-center justify-center p-2 overflow-hidden"
+            >
+              <img
+                [src]="item.imageCover"
+                [alt]="item.title"
+                class="max-w-full max-h-full object-contain"
+              />
+            </div>
+            <div>
+              <h3
+                class="font-medium text-(--color-secondary) text-sm sm:text-base leading-tight hover:text-[#198754] cursor-pointer transition-colors"
+              >
+                {{ item.title }}
+              </h3>
+              <p class="text-gray-400 text-xs sm:text-sm mt-1">{{ item.category.name }}</p>
+            </div>
+          </div>
+
+          <div
+            class="col-span-1 md:col-span-2 flex flex-row md:flex-col items-center md:items-start gap-2 md:gap-0.5"
+          >
+            <span class="font-bold text-(--color-secondary)">{{ item.price }} EGP</span> -->
+            @if (item.price) {
+              <span class="text-xs text-gray-400 line-through">{{ item.price }} EGP</span>
+            }
+          </div>
+
+          <div class="col-span-1 md:col-span-2">
+            @if (item.quantity > 0) {
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#e8f7ee] text-[#198754] border border-[#d1eadd]"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-[#198754]"></span>
+                In Stock
+              </span>
+            } @else {
+              <span
+                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-red-50 text-(--color-danger) border border-red-100"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-(--color-danger)"></span>
+                Out of Stock
+              </span>
+            }
+          </div>
+
+          <div class="col-span-1 md:col-span-2 flex items-center justify-end gap-2 mt-4 md:mt-0">
+            <button
+              (click)="addToCarts(item._id)"
+              class="bg-[#198754] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-700 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Add to Cart
+            </button>
+            <button
+              (click)="removeItem(item._id)"
+              class="w-9 h-9 border border-(--gray-color) rounded-lg flex items-center justify-center text-gray-400 hover:text-(--color-danger) hover:bg-red-50 hover:border-red-200 transition-all shrink-0"
+              title="Remove from wishlist"
+            >
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>
+        </div>
+      } @empty {
+        <div class="py-16 text-center text-gray-500 flex flex-col items-center">
+          <div
+            class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4 text-gray-300"
+          >
+            <i class="fa-regular fa-heart text-3xl"></i>
+          </div>
+          <p class="text-lg text-(--color-secondary) font-medium">Your wishlist is empty</p>
+          <p class="text-sm mt-1">Explore our products and add your favorites here!</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <a
+    routerLink="/shop"
+    class="inline-flex items-center gap-2 text-sm text-(--color-text) hover:text-[#198754] transition-colors font-medium"
+  >
+    <i class="fa-solid fa-arrow-left text-xs"></i>
+    Continue Shopping
+  </a>
+</main>

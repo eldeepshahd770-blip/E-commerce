@@ -1,0 +1,62 @@
+<main
+  class="min-h-[80vh] mt-20 flex items-center justify-center bg-gray-50/30 py-20 px-4 overflow-hidden relative"
+>
+  <div class="absolute inset-0 pointer-events-none opacity-10">
+    <i
+      class="fa-solid fa-apple-whole absolute top-20 left-[10%] text-green-500 text-3xl rotate-12"
+    ></i>
+    <i
+      class="fa-solid fa-carrot absolute bottom-40 right-[15%] text-green-500 text-3xl -rotate-12"
+    ></i>
+    <i class="fa-solid fa-lemon absolute top-[40%] left-[15%] text-green-500 text-2xl"></i>
+    <i class="fa-solid fa-leaf absolute bottom-20 left-[20%] text-green-500 text-2xl"></i>
+  </div>
+
+  <div class="max-w-2xl w-full text-center relative z-10">
+    <div class="relative inline-block mb-12">
+      <div
+        class="w-48 h-48 bg-(--card-bg) rounded-[2.5rem] shadow-xl shadow-(--gray-color)/50 flex items-center justify-center border border-(--light-gray)"
+      >
+        <i class="fa-solid fa-cart-shopping text-green-500 text-7xl"></i>
+      </div>
+
+      <div
+        class="absolute -top-4 -right-4 w-20 h-20 bg-[#20c997] rounded-full border-8 border-(--card-bg) flex items-center justify-center shadow-lg"
+      >
+        <span class="text-(--card-bg) font-black text-xl tracking-tighter">404</span>
+      </div>
+
+      <div class="flex justify-center gap-2 mt-8">
+        <div class="w-2 h-2 rounded-full bg-green-300"></div>
+        <div class="w-12 h-6 border-b-4 border-green-200 rounded-full"></div>
+        <div class="w-2 h-2 rounded-full bg-green-300"></div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h1 class="text-5xl font-black text-slate-800 tracking-tight">Oops! Nothing Here</h1>
+      <p class="text-gray-500 font-medium text-lg max-w-md mx-auto leading-relaxed">
+        Looks like this page went out of stock! Don't worry, there's plenty more fresh content to
+        explore.
+      </p>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
+      <a
+        routerLink="/"
+        class="group bg-[#20c997] hover:bg-[#19a179] text-(--card-bg) px-8 py-4 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-lg shadow-green-200 active:scale-95"
+      >
+        <i class="fa-solid fa-house text-sm group-hover:-translate-y-0.5 transition-transform"></i>
+        Go to Homepage
+      </a>
+
+      <button
+        onclick="history.back()"
+        class="bg-(--card-bg) hover:bg-gray-50 text-(--color-text) border border-(--gray-color) px-8 py-4 rounded-2xl font-bold flex items-center gap-2 transition-all shadow-sm active:scale-95"
+      >
+        <i class="fa-solid fa-arrow-left text-sm"></i>
+        Go Back
+      </button>
+    </div>
+  </div>
+</main>

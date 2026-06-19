@@ -1,0 +1,321 @@
+<div class="min-h-screen mt-28 pb-7 bg-gray-50 flex items-center justify-center p-4">
+  <div class="w-full max-w-6xl grid md:grid-cols-2 overflow-hidden">
+    <!-- Left Section -->
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="p-10 max-w-3xl w-full">
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-gray-800">
+          Welcome to <span class="text-(--color-primary)">FreshCart</span>
+        </h1>
+
+        <p class="text-gray-500 mt-4 leading-relaxed">
+          Join thousands of happy customers who enjoy fresh groceries delivered right to their
+          doorstep.
+        </p>
+
+        <!-- Features -->
+        <div class="mt-8 space-y-6">
+          <!-- Item -->
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-[#BBF7D0] text-(--color-primary) text-xl"
+            >
+              <i class="fa-solid fa-star text-[#15803D]"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-800">Premium Quality</h3>
+              <p class="text-gray-500">Premium quality products sourced from trusted suppliers.</p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-[#BBF7D0] text-(--color-primary) text-xl"
+            >
+              <i class="fa-solid fa-truck-fast text-[#15803D]"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-800">Fast Delivery</h3>
+              <p class="text-gray-500">Same-day delivery available in most areas</p>
+            </div>
+          </div>
+
+          <!-- Item -->
+          <div class="flex items-start gap-4">
+            <div
+              class="w-12 h-12 flex items-center justify-center rounded-full bg-[#BBF7D0] text-(--color-primary) text-xl"
+            >
+              <i class="fa-solid fa-shield-halved text-[#15803D]"></i>
+            </div>
+            <div>
+              <h3 class="font-semibold text-lg text-gray-800">Secure Shopping</h3>
+              <p class="text-gray-500">Your data and payments are completely secure</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial -->
+        <div class="mt-10 bg-(--card-bg) p-6 rounded-xl border border-(--gray-color) shadow-sm">
+          <div class="flex items-center gap-4 mb-3">
+            <div
+              class="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center text-(--card-bg) font-bold"
+            >
+              S
+            </div>
+
+            <div>
+              <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
+              <div class="text-yellow-400 text-sm">
+                <i class="fa-star fa-solid text-yellow-400"></i>
+
+                <i class="fa-star fa-solid text-yellow-400"></i>
+
+                <i class="fa-star fa-solid text-yellow-400"></i>
+
+                <i class="fa-star fa-solid text-yellow-400"></i>
+
+                <i class="fa-star fa-solid text-yellow-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-gray-500 italic leading-relaxed">
+            "FreshCart has transformed my shopping experience. The quality of the products is
+            outstanding, and the delivery is always on time. Highly recommend!"
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="p-10 bg-(--card-bg) mb-5 rounded-2xl shadow-lg">
+      <div class="text-center">
+        <h2 class="text-3xl font-bold mb-1 text-text">Create Your Account</h2>
+        <p class="text-lg text-text mb-6">Start your fresh journey with us today</p>
+      </div>
+
+      <!-- Social -->
+
+      <!-- Form -->
+      <form (ngSubmit)="submitForm()" [formGroup]="registerForm" class="space-y-4">
+        <!-- Name -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="name" class="text-[15px] font-semibold text-gray-700"> Full Name </label>
+          </div>
+
+          <div
+            class="flex items-center h-12 rounded-2xl border-2 bg-(--light-gray) border-(--gray-color) gap-3 px-4 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+          >
+            <input
+              formControlName="name"
+              type="text"
+              autocomplete="Full Name"
+              id="name"
+              placeholder="Plz Enter your Name"
+              class="w-full bg-transparent text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+            />
+          </div>
+          @let namecontroler = registerForm.get('name');
+          @if (namecontroler?.invalid && namecontroler?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+              <span class="sr-only">Danger</span>
+              <div>
+                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                  @if (namecontroler?.hasError('required')) {
+                    <li>Full Name is required.</li>
+                  } @else if (namecontroler?.hasError('minlength')) {
+                    <li>Name must be at least 3 characters</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+        <!-- Email -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="email" class="text-[15px] font-semibold text-gray-700">
+              Email Address
+            </label>
+          </div>
+
+          <div
+            class="flex items-center h-12 rounded-2xl border-2 bg-(--light-gray) border-(--gray-color) gap-3 px-4 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+          >
+            <input
+              formControlName="email"
+              type="email"
+              autocomplete="email"
+              id="email"
+              placeholder="Plz enter ypur mail"
+              class="w-full bg-transparent px-4 text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+            />
+          </div>
+          @let mailcontroler = registerForm.get('email');
+          @if (mailcontroler?.invalid && mailcontroler?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+              <span class="sr-only">Danger</span>
+              <div>
+                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                  @if (mailcontroler?.hasError('required')) {
+                    <li>Email is required.</li>
+                  } @else if (mailcontroler?.hasError('email')) {
+                    <li>Plz enter a valid email address.</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+        <!-- Pass -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="password" class="text-[15px] font-semibold text-gray-700"> Password </label>
+
+            <a class="text-(--color-primary) text-sm font-medium cursor-pointer hover:underline">
+              Forgot Password?
+            </a>
+          </div>
+
+          <div
+            class="flex items-center h-12 rounded-2xl border-2 bg-(--light-gray) border-(--gray-color) gap-3 px-4 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+          >
+            <input
+              #pass
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+              id="password"
+              class="w-full bg-transparent px-4 text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+            />
+
+            <i
+              (click)="showPass(pass)"
+              class="fa-regular fa-eye text-gray-400 text-xl cursor-pointer"
+            ></i>
+          </div>
+          @let passwordcontroler = registerForm.get('password');
+          @if (passwordcontroler?.invalid && passwordcontroler?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+              <span class="sr-only">Danger</span>
+              <div>
+                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                  @if (passwordcontroler?.hasError('required')) {
+                    <li>Full password is required.</li>
+                  } @else if (passwordcontroler?.hasError('pattern')) {
+                    <li>
+                      Must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1
+                      special
+                    </li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+        <!-- con_Pass -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="rePassword" class="text-[15px] font-semibold text-gray-700"
+              >Confirm Password
+            </label>
+          </div>
+
+          <div
+            class="flex items-center h-12 rounded-2xl border-2 bg-(--light-gray) border-(--gray-color) gap-3 px-4 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+          >
+            <input
+              formControlName="rePassword"
+              #repassInput
+              type="password"
+              id="rePassword"
+              placeholder="Confirm Password"
+              class="w-full bg-transparent px-4 text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+            />
+
+            <i
+              (click)="showPass(repassInput)"
+              class="fa-regular fa-eye text-gray-400 text-xl cursor-pointer"
+            ></i>
+          </div>
+          @let rePasswordcontroler = registerForm.get('rePassword');
+          @if (rePasswordcontroler?.invalid && rePasswordcontroler?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+              <span class="sr-only">Danger</span>
+              <div>
+                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                  @if (rePasswordcontroler?.hasError('required')) {
+                    <li>Plz confirm your Password.</li>
+                  } @else if (rePasswordcontroler?.hasError('mismatch')) {
+                    <li>Passwords not match ,plz try again.</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+        <!-- Tel -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label for="phone" class="text-[15px] font-semibold text-gray-700">
+              Phone Number
+            </label>
+          </div>
+
+          <div
+            class="flex items-center h-12 rounded-2xl border-2 bg-(--light-gray) border-(--gray-color) gap-3 px-4 focus-within:bg-[#E8F0FE] focus-within:ring-2 focus-within:ring-green-500"
+          >
+            <input
+              formControlName="phone"
+              type="tel"
+              id="phone"
+              placeholder="Phone Number"
+              class="w-full bg-transparent px-4 text-lg text-gray-800 border-0 outline-none ring-0 focus:ring-0 focus:outline-none shadow-none appearance-none"
+            />
+          </div>
+          @let phonecontroler = registerForm.get('phone');
+          @if (phonecontroler?.invalid && phonecontroler?.touched) {
+            <div class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base" role="alert">
+              <span class="sr-only">Danger</span>
+              <div>
+                <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                  @if (phonecontroler?.hasError('required')) {
+                    <li>Phone is required.</li>
+                  } @else if (phonecontroler?.hasError('pattern')) {
+                    <li>Please enter a valid Egyptian phone number (e.g., 01012345678).</li>
+                  }
+                </ul>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Terms -->
+        <div class="flex items-center gap-2 text-sm">
+          <input type="checkbox" />
+          <span>
+            I agree to the
+            <span class="text-(--color-primary) cursor-pointer">Terms</span>
+            and
+            <span class="text-(--color-primary) cursor-pointer">Privacy Policy</span>
+          </span>
+        </div>
+
+        <button
+          [disabled]="registerForm.invalid"
+          type="submit"
+          class="w-full bg-(--color-primary) h-12 text-(--card-bg) py-2 rounded-lg hover:bg-green-700 transition"
+        >
+          Create My Account
+        </button>
+      </form>
+
+      <p routerLink="/login" class="text-center text-lg text-text mt-6">
+        Already have an account?
+        <span class="text-(--color-primary) cursor-pointer">Sign In</span>
+      </p>
+    </div>
+  </div>
+</div>

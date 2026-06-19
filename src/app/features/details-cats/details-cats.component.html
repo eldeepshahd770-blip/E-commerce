@@ -1,0 +1,115 @@
+<section class="mt-23">
+  <div class="bg-linear-to-r from-green-500 to-green-400 p-8">
+    <div class="text-(--card-bg)/80 text-sm mb-6">
+      <span routerLink="/" class="cursor-pointer"> Home / </span>
+      <span class="cursor-pointer" routerLink="/categories"> Categories / </span>
+      <span class="text-(--card-bg) font-semibold">{{ specificcategry()!.name }}</span>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <!-- Logo Box -->
+      <div
+        class="w-20 h-20 bg-(--card-bg)/20 rounded-2xl flex items-center justify-center shadow-md"
+      >
+        <img [src]="specificcategry()!.image" class="w-full h-full object-contain p-2" />
+      </div>
+
+      <div>
+        <h1 class="text-(--card-bg) text-4xl font-bold mb-2">{{ specificcategry()!.name }}</h1>
+        <p class="text-(--card-bg)/90 text-lg">
+          Shop <span class="font-semibold">{{ specificcategry().name }}</span> products
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-6 bg-(--bg-main) min-h-screen">
+    <!-- Filter Bar -->
+    <div class="flex items-center gap-4 mb-6">
+      <div class="flex items-center gap-2 text-gray-600">
+        <i class="fa-solid fa-filter"></i>
+        <span class="font-medium">Active Filters:</span>
+      </div>
+
+      <div
+        class="flex items-center gap-2 bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm"
+      >
+        <i class="fa-solid fa-tag"></i>
+        {{ specificcategry().name }}
+        <div routerLink="/shop">
+          <i class="fa-solid fa-xmark cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+    <p class="text-gray-600 mb-6">Showing {{ categryProducts().length }} products</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <!-- Card -->
+      @if (categryProducts().length > 0) {
+        @for (product of categryProducts(); track product._id) {
+          <div
+            class="group bg-(--card-bg) rounded-xl border border-(--light-gray) p-4 relative hover:border-[#20c997] hover:shadow-lg transition-all duration-300"
+          >
+            <div
+              class="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
+            >
+              <button
+                (click)="addToWishList(product._id)"
+                class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+              >
+                <i class="fa-regular fa-heart text-xs"></i>
+              </button>
+              <button
+                class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+              >
+                <i class="fa-solid fa-arrows-rotate text-xs"></i>
+              </button>
+              <button
+                [routerLink]="['/detials', product._id, product.slug]"
+                class="w-8 h-8 bg-(--card-bg) border border-(--light-gray) rounded-full flex items-center justify-center text-gray-600 hover:bg-[#20c997] hover:text-(--card-bg) shadow-sm transition-colors"
+              >
+                <i class="fa-regular fa-eye text-xs"></i>
+              </button>
+            </div>
+
+            <div class="aspect-square mb-4 overflow-hidden rounded-lg">
+              <img
+                [src]="product.imageCover"
+                [alt]="product.title"
+                class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+
+            <div class="space-y-1">
+              <span
+                class="text-2xs text-(--color-secondary) font-medium uppercase tracking-wider"
+                >{{ product.category.name }}</span
+              >
+              <h3 class="text-sm font-bold text-(--color-text) truncate">{{ product.slug }}</h3>
+
+              <div class="flex items-center gap-1">
+                <app-rate [rating]="product.ratingsAverage"></app-rate>
+
+                <span class="text-2xs text-gray-400"> ({{ product.ratingsQuantity }})</span>
+              </div>
+
+              <div class="flex items-center justify-between pt-2">
+                <span class="text-sm font-bold text-(--color-secondary)"
+                  >{{ product.price }} EGP</span
+                >
+                <button
+                  (click)="addToCarts(product._id)"
+                  class="w-8 cursor-pointer h-8 bg-[#20c997] text-(--card-bg) rounded-full flex items-center justify-center hover:bg-[#19a179] transition-colors shadow-sm"
+                >
+                  <i class="fa-solid fa-plus text-xs"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        }
+      } @else {
+        <h1 class="text-(--color-danger) align-middle">No products for this brand</h1>
+      }
+    </div>
+  </div>
+</section>
